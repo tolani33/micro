@@ -20,3 +20,21 @@ Table:
 
 FOR SUBTRACTION
 Source Code:
+LXI H, 3000H   ; HL points to 3000H
+MOV A, M       ; Get first operand from 3000H into A
+INX H          ; HL points to 3001H
+SUB M          ; Subtract content of 3001H from A
+INX H          ; HL points to 3002H
+MOV M, A       ; Store result at 3002H
+HLT            ; Terminate program execution
+
+Table:
+| Memory Address | Opcode | Mnemonic | Operand | Comments                         |
+| -------------- | ------ | -------- | ------- | -------------------------------- |
+| 0200H          | 21     | LXI H    | 3000H   | Load HL register pair with 3000H |
+| 0203H          | 7E     | MOV A, M | -       | Move content of 3000H into A     |
+| 0204H          | 23     | INX H    | -       | Increment HL to point 3001H      |
+| 0205H          | 96     | SUB M    | -       | Subtract content of 3001H from A |
+| 0206H          | 23     | INX H    | -       | Increment HL to point 3002H      |
+| 0207H          | 77     | MOV M, A | -       | Store result from A into 3002H   |
+| 0208H          | 76     | HLT      | -       | Halt execution                   |
