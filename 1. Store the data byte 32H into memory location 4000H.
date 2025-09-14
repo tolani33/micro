@@ -1,0 +1,15 @@
+Source code:
+
+MVI A, 32H      ; Load 32H into accumulator
+STA 4000H       ; Store accumulator content at 4000H
+HLT             ; Stop execution
+
+
+
+Opcode Table
+Address   opcode  	Mnemonic	Operand	    Comments
+1000H     	3E	     MVI A	   32H	      Load 32H into accumulator
+1001H     	32	      STA	     4000H	    Store accumulator content
+1002H     	00         -	      -	        Low-order byte of address (00H)
+1003H	      40	       -        -         High-order byte of address (40H)
+1004H	      76	       HLT	    -        	Halt execution
