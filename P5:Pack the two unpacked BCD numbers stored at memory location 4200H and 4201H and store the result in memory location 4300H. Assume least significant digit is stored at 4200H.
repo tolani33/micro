@@ -1,0 +1,27 @@
+Source code:
+LDA 4201H    ; Get the most significant BCD digit (TENS)
+RLC          ; Rotate left
+RLC          ; Rotate left
+RLC          ; Rotate left
+RLC          ; Rotate left → adjust digit to left nibble
+ANI F0H      ; Make least significant BCD digit zero
+MOV C, A     ; Store partial result in C
+LDA 4200H    ; Get the lower BCD digit (UNITS)
+ADD C        ; Add to partial result
+STA 4300H    ; Store final packed BCD result
+HLT          ; Terminate program
+
+Table:
+| **Memory Address** | **Opcode** | **Mnemonic** | **Operand** | **Comments**                           |
+| ------------------ | ---------- | ------------ | ----------- | -------------------------------------- |
+| 2000H              | 3A         | LDA          | 4201H       | Load most significant BCD digit (TENS) |
+| 2003H              | 07         | RLC          |             | Rotate left                            |
+| 2004H              | 07         | RLC          |             | Rotate left                            |
+| 2005H              | 07         | RLC          |             | Rotate left                            |
+| 2006H              | 07         | RLC          |             | Rotate left (total 4 times shift)      |
+| 2007H              | E6         | ANI          | F0H         | Make least significant BCD digit zero  |
+| 2009H              | 4F         | MOV C, A     |             | Store the partial result               |
+| 200AH              | 3A         | LDA          | 4200H       | Get lower BCD digit                    |
+| 200DH              | 81         | ADD C        |             | Add lower BCD digit                    |
+| 200EH              | 32         | STA          | 4300H       | Store result                           |
+| 2011H              | 76         | HLT          |             | Terminate execution                    |
