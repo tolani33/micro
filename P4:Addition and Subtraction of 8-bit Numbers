@@ -1,0 +1,22 @@
+FOR ADDITION
+Source Code:
+LDA 3000H    ; Load 1st operand into Accumulator A
+MOV B, A     ; Copy A into B
+LDA 3001H    ; Load 2nd operand into Accumulator A
+ADD B        ; Add B to A → result in A
+STA 3002H    ; Store result from A into memory 3002H
+HLT          ; Halt execution
+
+Table:
+| **Memory Address** | **Opcode** | **Mnemonic** | **Operand** | **Comments**                          |
+| ------------------ | ---------- | ------------ | ----------- | ------------------------------------- |
+| 2000H              | 3A         | LDA          | 3000H       | Load 1st operand into Accumulator (A) |
+| 2003H              | 47         | MOV B, A     |             | Copy A into B                         |
+| 2004H              | 3A         | LDA          | 3001H       | Load 2nd operand into A               |
+| 2007H              | 80         | ADD B        |             | Add B to A → result in A              |
+| 2008H              | 32         | STA          | 3002H       | Store result from A into 3002H        |
+| 200BH              | 76         | HLT          |             | Halt execution                        |
+
+
+FOR SUBTRACTION
+Source Code:
