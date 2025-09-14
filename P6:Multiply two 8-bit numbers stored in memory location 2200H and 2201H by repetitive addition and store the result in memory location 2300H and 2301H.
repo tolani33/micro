@@ -1,0 +1,26 @@
+Source code:
+LDA 2200H    ; Load multiplicand into A
+MOV E, A     ; Move multiplicand to E
+MVI D, 00H   ; Clear register D (used for 16-bit addition)
+LDA 2201H    ; Load multiplier into A
+MOV C, A     ; Move multiplier to C
+BACK: DAD D  ; Add DE to HL (partial result)
+DCR C        ; Decrement counter C
+JNZ BACK     ; If C ≠ 0, repeat addition
+SHLD 2300H   ; Store result in memory 2300H and 2301H
+HLT          ; End of program
+
+Table:
+| **Memory Address** | **Opcode** | **Mnemonic** | **Operand** | **Comments**                         |
+| ------------------ | ---------- | ------------ | ----------- | ------------------------------------ |
+| 2000H              | 3A         | LDA          | 2200H       | Load multiplicand                    |
+| 2003H              | 57         | MOV E, A     |             | Move multiplicand to E               |
+| 2004H              | 16         | MVI D        | 00H         | Clear D                              |
+| 2006H              | 3A         | LDA          | 2201H       | Load multiplier                      |
+| 2009H              | 4F         | MOV C, A     |             | Move multiplier to C                 |
+| 200AH              | 21         | LXI H        | 0000H       | Clear HL                             |
+| 200DH              | 19         | DAD D        |             | HL = HL + DE                         |
+| 200EH              | 0D         | DCR C        |             | Decrement counter C                  |
+| 200FH              | C2         | JNZ          | 200DH       | Jump to BACK if counter ≠ 0          |
+| 2012H              | 22         | SHLD         | 2300H       | Store HL (result) at 2300H and 2301H |
+| 2015H              | 76         | HLT          |             | Terminate program execution          |
