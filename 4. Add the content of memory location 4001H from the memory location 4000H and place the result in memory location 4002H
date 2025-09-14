@@ -1,0 +1,30 @@
+Source code :
+LDA 4000H      ; Load A with the contents of 4000H
+MOV B, A       ; Copy A into register B
+LDA 4001H      ; Load A with the contents of 4001H
+ADD B          ; Add contents of B to A
+STA 4002H      ; Store result at 4002H
+HLT            ; Terminate program
+
+Table:
+| Memory Address | Opcode | Mnemonic | Operand | Comments                    |
+| -------------- | ------ | -------- | ------- | --------------------------- |
+| 2000H          | 3A     | LDA      | 4000H   | Load A with data from 4000H |
+| 2001H          | 00     |          |         | Low-order byte of address   |
+| 2002H          | 40     |          |         | High-order byte of address  |
+| 2003H          | 47     | MOV B, A | -       | Save into B                 |
+| 2004H          | 3A     | LDA      | 4001H   | Load A with data from 4001H |
+| 2005H          | 01     |          |         | Low-order byte              |
+| 2006H          | 40     |          |         | High-order byte             |
+| 2007H          | 80     | ADD B    | -       | A = A + B                   |
+| 2008H          | 32     | STA      | 4002H   | Store result                |
+| 2009H          | 02     |          |         | Low-order byte              |
+| 200AH          | 40     |          |         | High-order byte             |
+| 200BH          | 76     | HLT      | -       | Halt execution              |
+
+Result:
+| Memory Location | Data |
+| --------------- | ---- |
+| 4000H           | 25H  |
+| 4001H           | 15H  |
+| 4002H (Result)  | 3AH  |
