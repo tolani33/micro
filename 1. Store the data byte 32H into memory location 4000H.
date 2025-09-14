@@ -13,3 +13,8 @@ Address   opcode  	Mnemonic	Operand	    Comments
 1002H     	00         -	      -	        Low-order byte of address (00H)
 1003H	      40	       -        -         High-order byte of address (40H)
 1004H	      76	       HLT	    -        	Halt execution
+
+          | Memory Location | Content |
+          |                 | ------- |
+result    | Accumulator     | 32H     |
+ data     | 4000H           | 32H     |
