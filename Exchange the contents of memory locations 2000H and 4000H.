@@ -1,0 +1,27 @@
+Source code:
+LDA 2000H        ; Load content of 2000H into A
+MOV B, A         ; Copy A into register B
+LDA 4000H        ; Load content of 4000H into A
+STA 2000H        ; Store A into 2000H
+MOV A, B         ; Copy B into A
+STA 4000H        ; Store A into 4000H
+HLT              ; Stop execution
+
+Table:
+| Address | Opcode | Mnemonic | Operand | Comments                     |
+| ------- | ------ | -------- | ------- | ---------------------------- |
+| 2000H   | 3A     | LDA      | 2000H   | Load content of 2000H into A |
+| 2001H   | 00     | -        | -       | Low-order byte of 2000H      |
+| 2002H   | 20     | -        | -       | High-order byte of 2000H     |
+| 2003H   | 47     | MOV B,A  | -       | Copy A → B                   |
+| 2004H   | 3A     | LDA      | 4000H   | Load content of 4000H into A |
+| 2005H   | 00     | -        | -       | Low-order byte of 4000H      |
+| 2006H   | 40     | -        | -       | High-order byte of 4000H     |
+| 2007H   | 32     | STA      | 2000H   | Store A into 2000H           |
+| 2008H   | 00     | -        | -       | Low-order byte of 2000H      |
+| 2009H   | 20     | -        | -       | High-order byte of 2000H     |
+| 200AH   | 78     | MOV A,B  | -       | Copy B → A                   |
+| 200BH   | 32     | STA      | 4000H   | Store A into 4000H           |
+| 200CH   | 00     | -        | -       | Low-order byte of 4000H      |
+| 200DH   | 40     | -        | -       | High-order byte of 4000H     |
+| 200EH   | 76     | HLT      | -       | Halt execution               |
