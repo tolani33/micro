@@ -1,0 +1,19 @@
+Source Code:
+LXI H, 4000H   ; HL points to 4000H
+MOV A, M       ; Get first operand from 4000H into A
+INX H          ; HL points to 4001H
+SUB M          ; Subtract content of 4001H from A
+INX H          ; HL points to 4002H
+MOV M, A       ; Store result at 4002H
+HLT            ; Terminate program execution
+
+Table:
+| Memory Address | Opcode | Mnemonic | Operand | Comments                         |
+| -------------- | ------ | -------- | ------- | -------------------------------- |
+| 0200H          | 21     | LXI H    | 4000H   | Load HL register pair with 4000H |
+| 0203H          | 7E     | MOV A, M | -       | Move content of 4000H into A     |
+| 0204H          | 23     | INX H    | -       | Increment HL to point 4001H      |
+| 0205H          | 96     | SUB M    | -       | Subtract content of 4001H from A |
+| 0206H          | 23     | INX H    | -       | Increment HL to point 4002H      |
+| 0207H          | 77     | MOV M, A | -       | Store result from A into 4002H   |
+| 0208H          | 76     | HLT      | -       | Halt execution                   |
